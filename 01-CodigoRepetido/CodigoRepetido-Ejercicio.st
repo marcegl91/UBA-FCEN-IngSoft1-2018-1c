@@ -13,23 +13,23 @@ TestCase subclass: #IdiomTest
 	poolDictionaries: ''
 	category: 'CodigoRepetido-Ejercicio'!
 
-!IdiomTest methodsFor: 'testing' stamp: 'MG 4/12/2018 21:43:42'!
-on: aClosure shouldNotTakeMoreThan: millisecondLimit
+!IdiomTest methodsFor: 'testing' stamp: 'mv 4/13/2018 22:24:15'!
+on: aBlock shouldNotTakeMoreThan: millisecondLimit
 
 	|millisecondsBeforeRunning millisecondsAfterRunning |
 	
 	millisecondsBeforeRunning := Time millisecondClockValue.
-	aClosure value.
+	aBlock value.
 	millisecondsAfterRunning := Time millisecondClockValue.
 	
 	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < millisecondLimit 
 	
 ! !
 
-!IdiomTest methodsFor: 'testing' stamp: 'mv 4/13/2018 22:14:04'!
-on: aClosure shouldRaise: anExceptionType asserting: someAssertions
+!IdiomTest methodsFor: 'testing' stamp: 'mv 4/13/2018 22:24:22'!
+on: aBlock shouldRaise: anExceptionType asserting: someAssertions
 
-	[ aClosure value . self fail ]
+	[ aBlock value . self fail ]
 		on: anExceptionType 
 		do: someAssertions! !
 
