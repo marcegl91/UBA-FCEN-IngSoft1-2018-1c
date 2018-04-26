@@ -144,49 +144,49 @@ Object subclass: #BaseElement
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!BaseElement methodsFor: 'as yet unclassified' stamp: 'mv 4/23/2018 21:56:38'!
-data
+!BaseElement methodsFor: 'as yet unclassified' stamp: 'MG 4/26/2018 11:08:06'!
+content
 	
-	^self error: OOStack stackEmptyErrorDescription.! !
+	^self error: OOStack stackEmptyErrorDescription! !
 
 !BaseElement methodsFor: 'as yet unclassified' stamp: 'mv martin ventura 4/25/2018 22:20:13'!
 position
 	
 	^0! !
 
-!BaseElement methodsFor: 'as yet unclassified' stamp: 'mv 4/23/2018 21:57:29'!
+!BaseElement methodsFor: 'as yet unclassified' stamp: 'MG 4/26/2018 11:08:00'!
 previous
 	
-	^self error: OOStack stackEmptyErrorDescription.! !
+	^self error: OOStack stackEmptyErrorDescription! !
 
 
 !classDefinition: #Element category: #'Stack-Exercise'!
 Object subclass: #Element
-	instanceVariableNames: 'data previous'
+	instanceVariableNames: 'content previous'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!Element methodsFor: 'as yet unclassified' stamp: 'mv 4/23/2018 21:30:47'!
-data
+!Element methodsFor: 'as yet unclassified' stamp: 'MG 4/26/2018 11:05:49'!
+content
 
-	^data.! !
+	^content! !
 
-!Element methodsFor: 'as yet unclassified' stamp: 'mv 4/23/2018 21:30:50'!
-initalizeWith: anElement previous: aNode
+!Element methodsFor: 'as yet unclassified' stamp: 'MG 4/26/2018 11:08:27'!
+initalizeWith: someContent after: aPreviousElement
 
-	data _ anElement.
-	previous _ aNode.! !
+	content _ someContent.
+	previous _ aPreviousElement! !
 
-!Element methodsFor: 'as yet unclassified' stamp: 'mv martin ventura 4/25/2018 22:20:05'!
+!Element methodsFor: 'as yet unclassified' stamp: 'MG 4/26/2018 10:37:32'!
 position
 
-	^(1+ previous position)! !
+	^(1 + previous position)! !
 
-!Element methodsFor: 'as yet unclassified' stamp: 'mv 4/23/2018 21:30:53'!
+!Element methodsFor: 'as yet unclassified' stamp: 'MG 4/26/2018 11:06:34'!
 previous
 
-	^previous.! !
+	^previous! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -194,10 +194,10 @@ previous
 Element class
 	instanceVariableNames: ''!
 
-!Element class methodsFor: 'as yet unclassified' stamp: 'mv 4/23/2018 20:11:26'!
-with: anElement previous: aNode
+!Element class methodsFor: 'as yet unclassified' stamp: 'MG 4/26/2018 11:07:00'!
+with: someContent after: aPreviousElement
 
-	^self new initalizeWith: anElement previous: aNode! !
+	^self new initalizeWith: someContent after: aPreviousElement.! !
 
 
 !classDefinition: #OOStack category: #'Stack-Exercise'!
@@ -207,49 +207,44 @@ Object subclass: #OOStack
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'mv martin ventura 4/25/2018 23:07:26'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'MG 4/26/2018 11:03:01'!
 initialize
-	size _ 0.
-	top _ BaseElement new.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'mv martin ventura 4/25/2018 23:07:27'!
+	top _ BaseElement new! !
+
+!OOStack methodsFor: 'as yet unclassified' stamp: 'MG 4/26/2018 11:03:07'!
 isEmpty
-	^ top isKindOf: BaseElement.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'mv 4/23/2018 22:02:48'!
+	^ self size = 0! !
+
+!OOStack methodsFor: 'as yet unclassified' stamp: 'MG 4/26/2018 11:02:56'!
 pop
 	| aux |
-	
-	"(size = 0) ifTrue: [^self error: self class stackEmptyErrorDescription]."
-	
+		
 	aux _ top.
 	top _ top previous.
-	size _ size - 1.
 	
-	" devuelver el booleano de la colaboracion en 0"
-	"calcular el size"
-	
-	^aux data! !
+	^aux content! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'mv martin ventura 4/25/2018 23:07:08'!
-push: anElement
+!OOStack methodsFor: 'as yet unclassified' stamp: 'MG 4/26/2018 11:13:18'!
+push: someContent
 	| aux |
+	
 	aux _ Element
-		with: anElement
-		previous: top.
-	top _ aux.
-	size _ size + 1.! !
+		with: someContent
+		after: top.
+		
+	top _ aux! !
 
 !OOStack methodsFor: 'as yet unclassified' stamp: 'mv martin ventura 4/25/2018 22:19:44'!
 size
 
 	^top position! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'mv 4/23/2018 21:55:38'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'MG 4/26/2018 11:03:57'!
 top
 
-"	(size = 0) ifTrue: [^self error: self class stackEmptyErrorDescription]."
-	^top data.! !
+	^top content! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
