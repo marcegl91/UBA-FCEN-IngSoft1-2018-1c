@@ -707,7 +707,7 @@ XHasWon
 
 !classDefinition: #TicTacToe category: #TicTacToStep21!
 Object subclass: #TicTacToe
-	instanceVariableNames: 'os xs state winner'
+	instanceVariableNames: 'os xs state'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TicTacToStep21'!
